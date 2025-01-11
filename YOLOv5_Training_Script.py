@@ -17,6 +17,10 @@ from val import run as val_run
 from detect import run as detect_run
 import csv
 
+# Dataset:
+
+# https://universe.roboflow.com/roboflow-universe-projects/license-plate-recognition-rxg4e/dataset/6
+
 def setup_training(
     data_yaml, project_name, epochs=50, batch_size=16, img_size=640, weights="yolov5s.pt", optimizer="SGD"
 ):

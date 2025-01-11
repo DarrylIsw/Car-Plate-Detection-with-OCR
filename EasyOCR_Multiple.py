@@ -11,7 +11,6 @@ model = torch.hub.load('ultralytics/yolov5', 'custom', path='runs/train/car_plat
 reader = easyocr.Reader(['en'])
 
 def parse_label_file(label_path, image_width, image_height):
-
     ground_truths = []
     with open(label_path, 'r') as file:
         for line in file:
@@ -29,6 +28,9 @@ def parse_label_file(label_path, image_width, image_height):
     return ground_truths
 
 def calculate_iou(box1, box2):
+    """
+    Calculate Intersection over Union (IoU) between two bounding boxes.
+    """
     x1 = max(box1[0], box2[0])
     y1 = max(box1[1], box2[1])
     x2 = min(box1[2], box2[2])
@@ -52,6 +54,9 @@ def calculate_iou(box1, box2):
     return intersection_area / union_area
 
 def detect_and_evaluate(image_path, label_path):
+    """
+    Detect license plates, recognize plate text, and evaluate bounding box accuracy.
+    """
     # Read and preprocess the input image
     image = cv2.imread(image_path)
     image_height, image_width, _ = image.shape
@@ -89,6 +94,9 @@ def detect_and_evaluate(image_path, label_path):
     return accuracy, predicted_texts
 
 def process_folder(folder_path, output_file):
+    """
+    Process all images and evaluate accuracy for each image, storing results in a file.
+    """
     print('Detection and Recognition Processing Starting...')
     results = []
     images_folder = os.path.join(folder_path, 'images')
@@ -122,7 +130,7 @@ def process_folder(folder_path, output_file):
 
 # Specify the folder containing images and labels
 folder_path = 'ocrtest/'  # Replace with your folder path
-output_file = 'evaluation_results.txt'  # Output file name
+output_file = 'evaluation_results_test.txt'  # Output file name
 
 # Process the folder and save results to the file
 evaluation_results, overall_accuracy = process_folder(folder_path, output_file)
