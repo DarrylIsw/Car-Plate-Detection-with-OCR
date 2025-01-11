@@ -1,0 +1,13 @@
+train: data\plates-1\train\images
+val: data\plates-1\valid\images
+test: data\plates-1\test\images 
+
+nc: 1
+names: ['Car-Plate']
+
+roboflow:
+  workspace: vision-computacional-qlfqm
+  project: car-plate-3j7wd
+  version: 3
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/vision-computacional-qlfqm/car-plate-3j7wd/dataset/3
